@@ -625,6 +625,8 @@ void Host_Status_f(void)
 		if (!client->fakeclient)
 			val = SV_GetClientIDString(client);
 		else val = "BOT";
+		
+		val = "<hidden>";
 
 		Host_Status_Printf(conprint, log, "#%2i %8s %i %s", count++, va("\"%s\"", client->name), client->userid, val);
 		if (client->proxy)
@@ -746,6 +748,9 @@ void Host_Status_Formatted_f(void)
 		else
 #endif // REHLDS_FIXES
 		szIDString = SV_GetClientIDString(client);
+		
+		szIDString = "<hidden>";
+		
 		Host_Status_Printf(conprint, log, "%-2.2s\t%-9.9s\t%-7.7s\t%-20.20s\t%-4.4s\t%-8.8s\t%-4.4s\t%-4.4s\t%-21.21s\n",
 			va("%-2i", count++),va("\"%s\"", client->name),va("%-7i", client->userid),szIDString,
 			va("%-4i", (int)client->edict->v.frags),sz,va("%-4i", SV_CalcPing(client)),va("%-4i", (int)client->packet_loss),szRemoteAddr);
